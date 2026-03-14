@@ -1,0 +1,30 @@
+﻿@model BookStore.Models.Book
+
+<div class="col-md-4 mb-4 " style="width: 18rem;">
+    <div class="card h-50 shadow-sm">
+        
+        <img src="@Url.Content(Model.ImagePath ?? "~/images/noimage.png")"
+             class="card-img-top"
+             style="height:200px; object-fit:cover;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <p class="card-text">
+                @(Model.Description.Length > 50
+                                ? Model.Description.Substring(0, 50) + "..."
+                                : Model.Description)
+            </p>
+            @if (Model.QuantityAvailable <= 0)
+            {<span style="color:red">Out Of Stock</span>
+            <h3 class="card-text">@Model.Price</h3>
+            <a  class="btn btn-primary" >Buy Now</a>
+                <a class="btn btn-secondary"  >Add To cart</a>
+            }
+            else
+            {
+                <h3 class="card-text">@Model.Price</h3>
+                <a class="btn btn-primary" asp-action="PlaceOrderIndividual" asp-controller="Order" asp-route-BookId="@Model.BookID">Buy Now</a>
+                <a class="btn btn-secondary" asp-action="AddCartItems" asp-controller="cartItems" asp-route-id="@Model.BookID">Add To cart</a>
+            }
+        </div>
+    </div>
+</div>

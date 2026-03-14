@@ -1,0 +1,15 @@
+﻿@model List<BookStore.Models.Category>
+
+
+@foreach(var cat in Model)
+{
+   
+    <li>
+        <a class="dropdown-item"
+           asp-controller="Book"
+           asp-action="GetListOfBooksByCategory"
+           asp-route-id="@cat.CategoryId">
+            @cat.CategoryName
+        </a>
+    </li>
+}

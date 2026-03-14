@@ -1,0 +1,64 @@
+﻿@model BookStore.Models.Order
+<div class="container align-items-center">
+@if (Model == null || Model.orderItems == null || !Model.orderItems.Any())
+{
+        <div class="text-center mt-5">
+            <img src="~/images/Empty/EmptyCart.png" width="80%" height="500">
+            <h4>Your cart is empty</h4>
+        </div>
+}
+
+
+
+else
+{
+
+        <div>
+            <table class="table" width="100%">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>price</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ci in Model.orderItems)
+                    {
+                        if (ci != null)
+                        {
+                            <tr>
+
+                           = <td width="200px">
+                                    <img src=@ci.Books.ImagePath
+                                         style="width:50px;height:50px;object-fit:cover;margin-right:15px;border-radius:5px;">
+                                </td>
+                                <td> @ci.Books.Title</td>
+                                <td> @ci.Price</td>
+                                <td> @ci.Quantity
+                                </td>
+                                <td class="text-success">
+                                     @ci.Status
+                                   
+                                </td>
+                               
+
+                            </tr>
+
+                        }
+
+
+                    }
+
+                   
+                </tbody>
+            </table>
+
+
+
+
+        </div>
+}
+

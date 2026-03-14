@@ -1,0 +1,33 @@
+﻿@model List<BookStore.Models.Book>;
+<h1> List Of Books Available</h1>
+
+@if (Model == null || !Model.Any())
+{
+
+
+    <img src="~/images/Empty/emptyproduct.png" class="align-items-center" width="80%" height="500">
+
+}
+else
+{
+    <div class="container-fluid col-md-12 ">
+
+        <hr />
+
+
+
+        <div class="row">
+            @foreach (var book in Model)
+            {
+                @* @Html.Partial("_BookCard", book) *@
+                <partial name="_BookCard" model="book" />
+
+            }
+        </div>
+
+
+        <hr />
+
+
+    </div>
+}
